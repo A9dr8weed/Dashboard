@@ -7,17 +7,30 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SectionOrdersComponent } from './sections/section-orders/section-orders.component';
+import { SectionSalesComponent } from './sections/section-sales/section-sales.component';
+import { SectionHealthComponent } from './sections/section-health/section-health.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SectionOrdersComponent,
+    SectionSalesComponent,
+    SectionHealthComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: '/sales', pathMatch: 'full' },
+
+      { path: 'sales', component: SectionSalesComponent},
+      { path: 'orders', component: SectionOrdersComponent},
+      { path: 'health', component: SectionHealthComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
