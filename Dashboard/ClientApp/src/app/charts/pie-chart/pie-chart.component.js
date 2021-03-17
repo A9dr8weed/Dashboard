@@ -18,7 +18,7 @@ var PieChartComponent = /** @class */ (function () {
                 borderColor: '#111'
             }
         ];
-        this.pieChartType = 'pie';
+        this.pieChartType = 'doughnut';
     }
     PieChartComponent.prototype.ngOnInit = function () {
     };

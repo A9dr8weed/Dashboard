@@ -15,7 +15,7 @@ export class PieChartComponent implements OnInit {
       borderColor: '#111'
     }
   ];
-  pieChartType = 'pie';
+  pieChartType = 'doughnut';
 
   constructor() { }
 
