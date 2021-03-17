@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  links = [
+    { Name: 'Sales Volume', value: '/sales' },
+    { Name: 'Latest Orders', value: '/orders' },
+    { Name: 'System Health', value: '/health' }
+  ]
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }
