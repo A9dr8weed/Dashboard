@@ -22,6 +22,7 @@ var section_health_component_1 = require("./sections/section-health/section-heal
 var bar_chart_component_1 = require("./charts/bar-chart/bar-chart.component");
 var line_chart_component_1 = require("./charts/line-chart/line-chart.component");
 var pie_chart_component_1 = require("./charts/pie-chart/pie-chart.component");
+var server_component_1 = require("./server/server.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -36,7 +37,8 @@ var AppModule = /** @class */ (function () {
                 section_health_component_1.SectionHealthComponent,
                 bar_chart_component_1.BarChartComponent,
                 line_chart_component_1.LineChartComponent,
-                pie_chart_component_1.PieChartComponent
+                pie_chart_component_1.PieChartComponent,
+                server_component_1.ServerComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
