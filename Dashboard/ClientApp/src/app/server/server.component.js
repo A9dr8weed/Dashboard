@@ -12,6 +12,23 @@ var ServerComponent = /** @class */ (function () {
     function ServerComponent() {
     }
     ServerComponent.prototype.ngOnInit = function () {
+        this.setServerStatus(this.serverInput.isOnline);
+    };
+    ServerComponent.prototype.setServerStatus = function (isOnline) {
+        if (isOnline) {
+            this.serverInput.isOnline = true;
+            this.color = '#66bb6a';
+            this.buttonText = 'Shut Down';
+        }
+        else {
+            this.serverInput.isOnline = false;
+            this.color = '#ff6b6b';
+            this.buttonText = 'Start';
+        }
+    };
+    ServerComponent.prototype.toggleStatus = function (onlineStatus) {
+        console.log(this.serverInput.name, ': ', onlineStatus);
+        this.setServerStatus(!onlineStatus);
     };
     __decorate([
         core_1.Input()
