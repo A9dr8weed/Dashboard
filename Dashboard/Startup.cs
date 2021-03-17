@@ -1,7 +1,9 @@
+using Dashboard.Models;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +12,9 @@ namespace Dashboard
 {
     public class Startup
     {
+        // змінна для Connection
+        private string _connectionString;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,10 +28,17 @@ namespace Dashboard
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/dist");
+
+            // Conect PostgreSQL
+            _connectionString = Configuration["secretConnectionString"];
+
+            services.AddEntityFrameworkNpgsql().AddDbContext<ApiContext>(opt => opt.UseNpgsql(_connectionString));
+
+            services.AddTransient<DataSeed>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataSeed seed)
         {
             if (env.IsDevelopment())
             {
@@ -38,6 +50,8 @@ namespace Dashboard
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            seed.SeedData(20, 1000);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
