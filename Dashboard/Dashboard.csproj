@@ -31,6 +31,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\shared\chart.colors.ts" />
+    <None Remove="ClientApp\src\app\shared\customer.ts" />
+    <None Remove="ClientApp\src\app\shared\order.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
