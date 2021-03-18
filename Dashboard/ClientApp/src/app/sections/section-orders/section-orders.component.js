@@ -23,7 +23,7 @@ var SectionOrdersComponent = /** @class */ (function () {
         var _this = this;
         this._salesData.getOrders(this.page, this.limit)
             .subscribe(function (res) {
-            // console.log('Result from getOrders: ', res);
+            console.log('Result from getOrders: ', res);
             _this.orders = res['page']['data'];
             _this.total = res['page'].total;
             _this.loading = false;

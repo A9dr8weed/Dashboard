@@ -8,13 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SalesDataService = void 0;
 var core_1 = require("@angular/core");
-var operators_1 = require("rxjs/operators");
 var SalesDataService = /** @class */ (function () {
     function SalesDataService(_http) {
         this._http = _http;
     }
     SalesDataService.prototype.getOrders = function (pageIndex, pageSize) {
-        return this._http.get('http://localhost:5000/api/order/' + pageIndex + '/' + pageSize).pipe(operators_1.map(function (res) { return res.json(); }));
+        return this._http.get('https://localhost:5001/api/order/' + pageIndex + '/' + pageSize);
     };
     SalesDataService = __decorate([
         core_1.Injectable()
