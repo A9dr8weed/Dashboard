@@ -24,7 +24,9 @@ var line_chart_component_1 = require("./charts/line-chart/line-chart.component")
 var pie_chart_component_1 = require("./charts/pie-chart/pie-chart.component");
 var server_component_1 = require("./server/server.component");
 var pagination_component_1 = require("./pagination/pagination.component");
+// Service
 var sales_data_services_1 = require("./services/sales-data.services");
+var server_service_1 = require("./services/server.service");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -56,7 +58,8 @@ var AppModule = /** @class */ (function () {
                 ], { relativeLinkResolution: 'legacy' })
             ],
             providers: [
-                sales_data_services_1.SalesDataService
+                sales_data_services_1.SalesDataService,
+                server_service_1.ServerService
             ],
             bootstrap: [app_component_1.AppComponent]
         })

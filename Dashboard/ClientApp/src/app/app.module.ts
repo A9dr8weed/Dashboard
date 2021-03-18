@@ -17,7 +17,10 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { ServerComponent } from './server/server.component';
 import { PaginationComponent } from './pagination/pagination.component';
+
+// Service
 import { SalesDataService } from './services/sales-data.services';
+import { ServerService } from './services/server.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { SalesDataService } from './services/sales-data.services';
     ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [
-    SalesDataService
+    SalesDataService,
+    ServerService
   ],
   bootstrap: [AppComponent]
 })
