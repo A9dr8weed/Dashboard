@@ -15,6 +15,12 @@ var SalesDataService = /** @class */ (function () {
     SalesDataService.prototype.getOrders = function (pageIndex, pageSize) {
         return this._http.get('https://localhost:5001/api/order/' + pageIndex + '/' + pageSize);
     };
+    SalesDataService.prototype.getOrdersByCustomer = function (n) {
+        return this._http.get('https://localhost:5001/api/order/bycustomer/' + n);
+    };
+    SalesDataService.prototype.getOrdersByState = function () {
+        return this._http.get('https://localhost:5001/api/order/bystate/');
+    };
     SalesDataService = __decorate([
         core_1.Injectable()
     ], SalesDataService);
