@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { THEME_COLORS } from '../../shared/theme.colors';
 
 const theme = 'Bright';
