@@ -75,7 +75,7 @@ namespace Dashboard.Controllers
             return Ok(groupedResult);
         }
 
-        [HttpGet("GetOrder/{}", Name = "GetOrder")]
+        [HttpGet("GetOrder/{id}", Name = "GetOrder")]
         public IActionResult GetOrder(int id)
         {
             Order order = _db.Orders.Include(o => o.Customer).First(o => o.Id == id);
