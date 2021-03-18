@@ -38,6 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\services\sales-data.services.ts" />
+    <None Remove="ClientApp\src\app\services\tests\sales-data.service.spec.ts" />
     <None Remove="ClientApp\src\app\shared\chart.colors.ts" />
     <None Remove="ClientApp\src\app\shared\customer.ts" />
     <None Remove="ClientApp\src\app\shared\order.ts" />

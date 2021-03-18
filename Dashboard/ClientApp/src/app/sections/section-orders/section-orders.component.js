@@ -9,31 +9,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SectionOrdersComponent = void 0;
 var core_1 = require("@angular/core");
 var SectionOrdersComponent = /** @class */ (function () {
-    function SectionOrdersComponent() {
-        this.orders = [
-            {
-                id: 1, customer: { id: 1, name: 'Main St Bakery', state: 'C0', email: 'mainst@example.com' },
-                total: 230, placed: new Date(2021, 12, 1), fulfilled: new Date(2021, 12, 2)
-            },
-            {
-                id: 2, customer: { id: 1, name: 'Main St Bakery', state: 'C0', email: 'mainst@example.com' },
-                total: 230, placed: new Date(2021, 12, 1), fulfilled: new Date(2021, 12, 2)
-            },
-            {
-                id: 3, customer: { id: 1, name: 'Main St Bakery', state: 'C0', email: 'mainst@example.com' },
-                total: 230, placed: new Date(2021, 12, 1), fulfilled: new Date(2021, 12, 2)
-            },
-            {
-                id: 4, customer: { id: 1, name: 'Main St Bakery', state: 'C0', email: 'mainst@example.com' },
-                total: 230, placed: new Date(2021, 12, 1), fulfilled: new Date(2021, 12, 2)
-            },
-            {
-                id: 5, customer: { id: 1, name: 'Main St Bakery', state: 'C0', email: 'mainst@example.com' },
-                total: 230, placed: new Date(2021, 12, 1), fulfilled: new Date(2021, 12, 2)
-            }
-        ];
+    function SectionOrdersComponent(_salesData) {
+        this._salesData = _salesData;
+        this.total = 0;
+        this.page = 1;
+        this.limit = 10;
+        this.loading = false;
     }
     SectionOrdersComponent.prototype.ngOnInit = function () {
+        this.getOrders();
+    };
+    SectionOrdersComponent.prototype.getOrders = function () {
+        var _this = this;
+        this._salesData.getOrders(this.page, this.limit)
+            .subscribe(function (res) {
+            // console.log('Result from getOrders: ', res);
+            _this.orders = res['page']['data'];
+            _this.total = res['page'].total;
+            _this.loading = false;
+        });
+    };
+    SectionOrdersComponent.prototype.goToPrevious = function () {
+        //console.log('Previous Button Clicked!');
+        this.page--;
+        this.getOrders();
+    };
+    SectionOrdersComponent.prototype.goToNext = function () {
+        //console.log('Next Button Clicked!');
+        this.page++;
+        this.getOrders();
+    };
+    SectionOrdersComponent.prototype.goToPage = function (n) {
+        this.page = n;
+        this.getOrders();
     };
     SectionOrdersComponent = __decorate([
         core_1.Component({

@@ -23,6 +23,8 @@ var bar_chart_component_1 = require("./charts/bar-chart/bar-chart.component");
 var line_chart_component_1 = require("./charts/line-chart/line-chart.component");
 var pie_chart_component_1 = require("./charts/pie-chart/pie-chart.component");
 var server_component_1 = require("./server/server.component");
+var pagination_component_1 = require("./pagination/pagination.component");
+var sales_data_services_1 = require("./services/sales-data.services");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -38,7 +40,8 @@ var AppModule = /** @class */ (function () {
                 bar_chart_component_1.BarChartComponent,
                 line_chart_component_1.LineChartComponent,
                 pie_chart_component_1.PieChartComponent,
-                server_component_1.ServerComponent
+                server_component_1.ServerComponent,
+                pagination_component_1.PaginationComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,7 +55,9 @@ var AppModule = /** @class */ (function () {
                     { path: 'health', component: section_health_component_1.SectionHealthComponent }
                 ], { relativeLinkResolution: 'legacy' })
             ],
-            providers: [],
+            providers: [
+                sales_data_services_1.SalesDataService
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
