@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesDataService } from '../../services/sales-data.services';
 import * as moment from 'moment';
-import { format } from 'util';
-import { Local } from 'protractor/built/driverProviders';
 
 /*const SAMPLE_BARCHART_DATA: any[] = [
   { data: [65, 59, 80, 81, 56, 54, 30], label: 'Q3 Sales' },
@@ -45,7 +43,6 @@ export class BarChartComponent implements OnInit {
 
   getChartData(res: Response) {
     this.orders = res['page']['data'];
-    const data = this.orders.map(o => o.orderTotal);
 
     const formattedOrders = this.orders.reduce((r, e) => {
       r.push([moment(e.placed).format('YY-MM-DD'), e.orderTotal]);

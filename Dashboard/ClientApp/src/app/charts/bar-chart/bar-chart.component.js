@@ -37,7 +37,6 @@ var BarChartComponent = /** @class */ (function () {
     };
     BarChartComponent.prototype.getChartData = function (res) {
         this.orders = res['page']['data'];
-        var data = this.orders.map(function (o) { return o.orderTotal; });
         var formattedOrders = this.orders.reduce(function (r, e) {
             r.push([moment(e.placed).format('YY-MM-DD'), e.orderTotal]);
             return r;
