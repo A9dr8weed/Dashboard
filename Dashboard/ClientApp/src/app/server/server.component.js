@@ -10,6 +10,7 @@ exports.ServerComponent = void 0;
 var core_1 = require("@angular/core");
 var ServerComponent = /** @class */ (function () {
     function ServerComponent() {
+        this.serverAction = new core_1.EventEmitter();
     }
     ServerComponent.prototype.ngOnInit = function () {
         this.setServerStatus(this.serverInput.isOnline);
@@ -17,22 +18,49 @@ var ServerComponent = /** @class */ (function () {
     ServerComponent.prototype.setServerStatus = function (isOnline) {
         if (isOnline) {
             this.serverInput.isOnline = true;
+            this.serverStatus = 'Online';
             this.color = '#66bb6a';
             this.buttonText = 'Shut Down';
         }
         else {
             this.serverInput.isOnline = false;
+            this.serverStatus = 'Offline';
             this.color = '#ff6b6b';
             this.buttonText = 'Start';
         }
     };
-    ServerComponent.prototype.toggleStatus = function (onlineStatus) {
-        console.log(this.serverInput.name, ': ', onlineStatus);
-        this.setServerStatus(!onlineStatus);
+    ServerComponent.prototype.sendServerAction = function (isOnline) {
+        console.log('called');
+        this.makeLoading();
+        var payload = this.buildPayload(isOnline);
+        this.serverAction.emit(payload);
+    };
+    ServerComponent.prototype.makeLoading = function () {
+        this.color = '#ffca28';
+        this.buttonText = 'Pending...';
+        this.isLoading = true;
+        this.serverStatus = 'Loading';
+    };
+    ServerComponent.prototype.buildPayload = function (isOnline) {
+        if (isOnline) {
+            return {
+                id: this.serverInput.id,
+                payload: 'deactivate'
+            };
+        }
+        else {
+            return {
+                id: this.serverInput.id,
+                payload: 'activate'
+            };
+        }
     };
     __decorate([
         core_1.Input()
     ], ServerComponent.prototype, "serverInput", void 0);
+    __decorate([
+        core_1.Output()
+    ], ServerComponent.prototype, "serverAction", void 0);
     ServerComponent = __decorate([
         core_1.Component({
             selector: 'app-server',

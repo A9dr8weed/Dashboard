@@ -8,17 +8,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SectionHealthComponent = void 0;
 var core_1 = require("@angular/core");
-var SAMPLE_SERVERS = [
-    { id: 1, name: 'dev-web', isOnline: true },
-    { id: 2, name: 'dev-mail', isOnline: false },
-    { id: 3, name: 'prod-web', isOnline: true },
-    { id: 4, name: 'prod-web', isOnline: true },
-];
+var Rx_1 = require("rxjs/Rx");
+/*const SAMPLE_SERVERS = [
+  {id: 1, name: 'dev-web', isOnline: true},
+  {id: 2, name: 'dev-mail', isOnline: false},
+  {id: 3, name: 'prod-web', isOnline: true},
+  {id: 4, name: 'prod-web', isOnline: true},
+]*/
 var SectionHealthComponent = /** @class */ (function () {
-    function SectionHealthComponent() {
-        this.servers = SAMPLE_SERVERS;
+    function SectionHealthComponent(_serverService) {
+        this._serverService = _serverService;
     }
     SectionHealthComponent.prototype.ngOnInit = function () {
+        this.refreshData();
+    };
+    SectionHealthComponent.prototype.ngOnDestroy = function () {
+        if (this.timerSubscription) {
+            this.timerSubscription.unsubscribe();
+        }
+    };
+    SectionHealthComponent.prototype.refreshData = function () {
+        var _this = this;
+        this._serverService.getServers()
+            .subscribe(function (res) {
+            _this.servers = res;
+        });
+        this.subscribeToData();
+    };
+    SectionHealthComponent.prototype.subscribeToData = function () {
+        var _this = this;
+        this.timerSubscription = Rx_1.Observable.timer(5000).first().subscribe(function () { return _this.refreshData(); });
     };
     SectionHealthComponent = __decorate([
         core_1.Component({

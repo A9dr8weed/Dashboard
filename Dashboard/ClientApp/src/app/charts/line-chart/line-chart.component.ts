@@ -53,7 +53,6 @@ export class LineChartComponent implements OnInit {
         dates = [].concat.apply([], dates);
 
         const r = this.getCustomerOrdersByDate(allChartData, dates)['data'];
-        console.log('r:', r);
 
         this.lineChartLabels = r[0]['orders'].map(o => o['date']);
 

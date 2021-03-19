@@ -42,7 +42,6 @@ var LineChartComponent = /** @class */ (function () {
                 }, []);
                 dates = [].concat.apply([], dates);
                 var r = _this.getCustomerOrdersByDate(allChartData, dates)['data'];
-                console.log('r:', r);
                 _this.lineChartLabels = r[0]['orders'].map(function (o) { return o['date']; });
                 _this.lineChartData = [
                     {
